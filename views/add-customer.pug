@@ -1,0 +1,13 @@
+include layouts/layout
+h1 Add Customer
+
+    form(action='/add-customer', method='post')
+        label(for='CustomerName') Customer Name:
+        input(type='text', name='CustomerName', required)
+        br
+
+        label(for='CustomerEmail') Customer Email:
+        input(type='text', name='CustomerEmail', required)
+        br
+
+        input(type='submit', value='Submit')

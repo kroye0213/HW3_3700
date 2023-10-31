@@ -1,4 +1,6 @@
 const Product = require("../models/product");
+const router = require("../routes/feed");
+const db = require("../util/database");
 exports.getPosts = ( req, res, next ) => {
          // Will send responds - dont need to render view
          // will return json reponse
@@ -55,4 +57,13 @@ exports.getProducts = ( req, res, next ) => {
     //         }
     //     ]
     // });
+}
+exports.showCustomers = ( req, res, next ) => {
+    res.render('customers');
+}
+exports.showProducts = ( req, res, next ) => {
+    res.render('products');
+}
+exports.showSales = ( req, res, next ) => {
+    res.render('sales');
 }

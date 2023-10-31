@@ -27,6 +27,7 @@ db.connect((err) => {
   }
   console.log('Connected to the database');
 });
+app.use('/feed', routes);
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
