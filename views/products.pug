@@ -1,0 +1,14 @@
+include layouts/layout
+
+.container.col-4.p-4
+    table.table.table-striped
+        thead
+            tr.table-primary
+                th(scope='col') Product
+                th(scope='col') Total Sales
+        tbody
+            tr
+                th(scope='row') Hammer
+                td $12,000
+    form(method='get' action='/??????')
+        button.btn.btn-secondary(type='submit') Insert New Product

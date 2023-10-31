@@ -1,0 +1,42 @@
+include layouts/layout
+
+.container.col-9.p-4
+    table.table.table-borderless
+        thead
+            tr
+                th.col-4 Top Customers
+                th.col-4 Top Products
+                th.col-3 Sales
+        tbody
+            tr
+                td
+                    ol
+                        if data1 && data1.length > 0
+                            each customer in data1
+                                li= `${customer.CustomerName} - $${customer.TotalSales.toFixed(2)}`
+                        else
+                            li No customers available
+                td
+                    ol
+                        if data2 && data2.length > 0
+                            each product in data2
+                                li= `${product.ItemName} - $${product.TotalRevenue.toFixed(2)}`
+                        else
+                            li No products available
+                td
+                    ol
+                        if data3 && data3.length > 0
+                            each sale in data3
+                                li= `${sale.SalesMonth} ${sale.SalesYear} - $${sale.TotalSales.toFixed(2)}`
+                        else
+                            li No sales available
+            tr
+                td
+                    form(method='get' action='???/')
+                        button.btn.btn-secondary(type='submit') Show All
+                td
+                    form(method='get' action='???/')
+                        button.btn.btn-secondary(type='submit') Show All
+                td
+                    form(method='get' action='???/')
+                        button.btn.btn-secondary(type='submit') Show All

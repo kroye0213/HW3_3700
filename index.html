@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        window.onload = function() {
+            // Function to handle each query and render the table
+            function handleQuery(endpoint, containerId) {
+                fetch(endpoint)
+                    .then(response => response.json())
+                    .then(data => {
+                        let res = document.getElementById(containerId);
+                        let oStr = "<ol>"; // Change to ordered list (ol)
+                        data.forEach(row => {
+                            oStr += `<li>${row.CustomerName} - $ ${row.TotalSales}</li>`;
+                        });
+                        oStr += "</ol>";
+                        res.innerHTML = oStr;
+                    })
+                    .catch(error => console.log('Fetch Error:', error));
+            }
+            function handleQuery2(endpoint, containerId) {
+                fetch(endpoint)
+                    .then(response => response.json())
+                    .then(data => {
+                        let res = document.getElementById(containerId);
+                        let oStr = "<ol>"; // Change to ordered list (ol)
+                        data.forEach(row => {
+                            oStr += `<li>${row.ItemName} - $ ${row.TotalRevenue}</li>`;
+                        });
+                        oStr += "</ol>";
+                        res.innerHTML = oStr;
+                    })
+                    .catch(error => console.log('Fetch Error:', error));
+            }
+            function handleQuery3(endpoint, containerId) {
+                fetch(endpoint)
+                    .then(response => response.json())
+                    .then(data => {
+                        let res = document.getElementById(containerId);
+                        let oStr = "<ol>"; // Change to ordered list (ol)
+                        data.forEach(row => {
+                            oStr += `<li>${row.SalesMonth} - ${row.SalesYear}- $${row.TotalSales}</li>`;
+                        });
+                        oStr += "</ol>";
+                        res.innerHTML = oStr;
+                    })
+                    .catch(error => console.log('Fetch Error:', error));
+            }
+            // Call the function for each query
+            handleQuery('/getData', 'results1');
+            handleQuery2('/getData2', 'results2');
+            handleQuery3('/getData3', 'results3');
+        }
+    </script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="imgs/harry.png" width="30" height="30" class="d-inline-block align-text-top">
+            Happy Harry's Hardware Sales
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="btn btn-primary">Home</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" href="customers.html">Customers</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary">Products</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary">Sales</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="results1"></div>
+            <!-- No need for this button if you're loading on page load -->
+        </div>
+        <div class="col-sm-4" style="background-color: yellow">
+            <!-- Create separate containers for each result -->
+            <div id="results2"></div>
+        </div>
+        <div class="col-sm-4" style="background-color: yellow">
+            <!-- Create separate containers for each result -->
+            <div id="results3"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

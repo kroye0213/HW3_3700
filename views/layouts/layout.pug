@@ -1,0 +1,25 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title My App
+    link(href='/css/bootstrap.css' rel='stylesheet')
+    script(src='/js/bootstrap.js' type='application/javascript')
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.static-top
+    .container.p-3
+        a.navbar-brand(href='#')
+            img(src='http://chupein.com/images/hhlogo.gif' alt='...' height='65')
+        .col-8
+            h4
+                p.text-center.text-light
+                    | Happy Harry&apos;s Hardware
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.ms-auto
+                li.nav-item.p-1
+                    a.btn.btn-warning(href='/home' role='button') Home
+                li.nav-item.p-1
+                    a.btn.btn-warning(href='/customers' role='button') Customers
+                li.nav-item.p-1
+                    a.btn.btn-warning(href='/products' role='button') Products
+                li.nav-item.p-1
+                    a.btn.btn-warning(href='/sales' role='button') Sales

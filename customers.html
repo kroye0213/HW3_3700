@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+    window.onload = function() {
+        // Function to handle each query and render the table
+function showAllCustomers() {
+    fetch('/customers')
+            .then(response => response.json())
+            .then(data => {
+                let res = document.getElementById("results1");
+            let oStr = `
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Total Sales</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            data.forEach(row => {
+                oStr += `
+                    <tr>
+                        <td>${row.CustomerName}</td>
+                        <td>${row.CustomerEmail}</td>
+                        <td>$ ${row.TotalSales}</td>
+                        <td><button class="btn btn-primary">Update</button></td>
+                    </tr>
+                `;
+            });
+
+            oStr += `
+                    </tbody>
+                </table>
+            `;
+
+            res.innerHTML = oStr;
+        })
+        .catch(error => console.log('Fetch Error:', error));
+    }
+    showAllCustomers();
+}
+
+    </script>
+</head>
+<body>
+ <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div id="results1"></div>
+                <!-- No need for this button if you're loading on page load -->
+            </div>
+        </div>
+ </div>
+
+</body>
+
+</html>
