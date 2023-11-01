@@ -16,7 +16,10 @@ include layouts/layout
                     td= customer.CustomerEmail
                     td= customer.TotalSales
                     td
-                        form(method='get' action=`/customer/${customer.CustomerID}`)
+                        form(method='get' action=`/customer/${customer.CustomerID}/update`)
                             button.btn.btn-secondary(type='submit') Update
+                        form(method='get', action=`/customer/${customer.CustomerID}/delete`)
+                            button.btn.btn-danger(type='submit') Delete
+
     form(method='get' action='/customer/add')
         button.btn.btn-secondary(type='submit') Insert New Customer

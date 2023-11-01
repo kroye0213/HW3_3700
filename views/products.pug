@@ -11,5 +11,5 @@ include layouts/layout
                 tr
                     th(scope='row')= item.ItemName
                     td= '$' + item.TotalSales
-    form(method='get' action='/products')
+    form(method='get' action='/product/add')
         button.btn.btn-secondary(type='submit') Insert New Product

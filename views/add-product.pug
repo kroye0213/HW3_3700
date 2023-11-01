@@ -1,0 +1,15 @@
+include layouts/layout
+
+.container.col-4.p-4
+  h1 Add New Product
+
+  form(method='post', action='/product/add')
+    .form-group
+      label(for='ItemName') Name:
+      input.form-control(type='text', name='ItemName', required)
+
+    .form-group
+      label(for='ItemPrice') Price:
+      input.form-control(type='number', name='ItemPrice', required)
+
+    button.btn.btn-primary(type='submit') Add Product

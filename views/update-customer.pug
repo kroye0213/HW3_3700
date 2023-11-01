@@ -1,0 +1,14 @@
+include layouts/layout
+
+.container.col-4.p-4
+  h1 Update Customer
+
+  form(method='post', action=`/customer/${customer.CustomerID}/update`)
+    .form-group
+      label(for='CustomerName') Name:
+      input.form-control(type='text', name='CustomerName', value=customer.CustomerName, required)
+    .form-group
+      label(for='CustomerEmail') Email:
+      input.form-control(type='email', name='CustomerEmail', value=customer.CustomerEmail, required)
+
+    button.btn.btn-primary(type='submit') Update

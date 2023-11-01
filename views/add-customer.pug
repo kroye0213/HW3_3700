@@ -1,13 +1,15 @@
 include layouts/layout
-h1 Add Customer
 
-    form(action='/add-customer', method='post')
-        label(for='CustomerName') Customer Name:
-        input(type='text', name='CustomerName', required)
-        br
+  .container.col-4.p-4
+    h1 Add New Customer
+        form(method='post', action='/customer/add')
+          .form-group
+            label(for='CustomerName') Name:
+            input.form-control(type='text', name='CustomerName', required)
 
-        label(for='CustomerEmail') Customer Email:
-        input(type='text', name='CustomerEmail', required)
-        br
+          .form-group
+            label(for='CustomerEmail') Email:
+            input.form-control(type='email', name='CustomerEmail', required)
 
-        input(type='submit', value='Submit')
+          button.btn.btn-primary(type='submit') Add Customer
+
