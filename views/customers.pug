@@ -9,13 +9,14 @@ include layouts/layout
                 th(scope='col') Total Sales
                 th(scope='col')
         tbody
-            tr
-                th(scope='row') John Doe
-                td do@d.com
-                td $12,000
-                td
-                    form(method='get' action='/?????')
-                        button.btn.btn-secondary(type='submit') Update
-
-
-    a.btn.btn-secondary(href='add-customer' role='button') Insert New Customer
+            //- Loop through the data and display customer details
+            each customer in customers
+                tr
+                    th(scope='row')= customer.CustomerName
+                    td= customer.CustomerEmail
+                    td= customer.TotalSales
+                    td
+                        form(method='get' action=`/customer/${customer.CustomerID}`)
+                            button.btn.btn-secondary(type='submit') Update
+    form(method='get' action='/customer/add')
+        button.btn.btn-secondary(type='submit') Insert New Customer

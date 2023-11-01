@@ -7,8 +7,9 @@ include layouts/layout
                 th(scope='col') Product
                 th(scope='col') Total Sales
         tbody
-            tr
-                th(scope='row') Hammer
-                td $12,000
-    form(method='get' action='/??????')
-        a.btn.btn-secondary( type='button') Insert New Product
+            each item in data
+                tr
+                    th(scope='row')= item.ItemName
+                    td= '$' + item.TotalSales
+    form(method='get' action='/products')
+        button.btn.btn-secondary(type='submit') Insert New Product

@@ -10,9 +10,10 @@ include layouts/layout
                 th(scope='col') Quantity
                 th(scope='col') Total Sales
         tbody
-            tr
-                th(scope='row') 2023-10-2
-                td $12,000
-                td $12,000
-                td $12,000
-                td $12,000
+            each sale in sales
+                tr
+                    th(scope='row')= sale.Date
+                    td= sale.CustomerName
+                    td= sale.Product
+                    td= sale.Quantity
+                    td= '$' + sale.TotalSales

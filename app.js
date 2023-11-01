@@ -27,7 +27,6 @@ db.connect((err) => {
   }
   console.log('Connected to the database');
 });
-app.use('/feed', routes);
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
@@ -93,6 +92,64 @@ app.get('/home', (req, res) => {
                     data3: results3,
                 });
             });
+        });
+    });
+});
+app.get('/customers', (req, res) => {
+    const query =
+        'SELECT c.CustomerID, c.CustomerName, c.CustomerEmail, SUM(i.ItemPrice * s.Quantity) AS TotalSales \n' +
+        'FROM customer c \n' +
+        'LEFT JOIN sales s ON c.CustomerID = s.CustomerID \n' +
+        'LEFT JOIN item i ON s.ItemID = i.ItemID \n' +
+        'GROUP BY c.CustomerID \n' +
+        'ORDER BY TotalSales DESC;';
+
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.render('customers', {
+            customers: rows
+        });
+    });
+});
+
+app.get('/products', (req, res) => {
+    const query =
+        'SELECT i.ItemName, SUM(i.ItemPrice * s.Quantity) AS TotalSales \n' +
+        'FROM item i \n' +
+        'JOIN sales s ON i.ItemID = s.ItemID \n' +
+        'GROUP BY i.ItemName \n' +
+        'ORDER BY TotalSales DESC;';
+
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.render('products', {
+            data: rows
+        });
+    });
+});
+
+app.get('/sales', (req, res) => {
+    const query =
+        'SELECT \n' +
+            'DATE_FORMAT(s.SalesDate, "%Y-%m-%d") AS Date, \n' +
+            'c.CustomerName, \n' +
+            'i.ItemName AS Product, \n' +
+            's.Quantity AS Quantity, \n' +
+            '(i.ItemPrice * s.Quantity) AS TotalSales \n' +
+        'FROM \n' +
+            'sales s \n' +
+        'JOIN \n' +
+            'customer c ON s.CustomerID = c.CustomerID \n' +
+        'JOIN \n' +
+            'item i ON s.ItemID = i.ItemID \n' +
+        'WHERE \n' +
+            'MONTH(s.SalesDate) = MONTH(CURDATE()) AND YEAR(s.SalesDate) = YEAR(CURDATE()) \n' +
+        'ORDER BY TotalSales DESC;';
+
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.render('sales', {
+            sales: rows
         });
     });
 });
