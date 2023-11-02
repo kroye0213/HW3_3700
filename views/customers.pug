@@ -7,6 +7,7 @@ include layouts/layout
                 th(scope='col') Name
                 th(scope='col') Email
                 th(scope='col') Total Sales
+                th(scope='col') Function
         tbody
             //- Loop through the data and display customer details
             each customer in customers
@@ -14,10 +15,12 @@ include layouts/layout
                     th(scope='row')= customer.CustomerName
                     td= customer.CustomerEmail
                     td= customer.TotalSales
+                    td
                         form(method='get' action=`/customer/${customer.CustomerID}/update`)
                             button.btn.btn-secondary(type='submit') Update
                         form(method='get', action=`/customer/${customer.CustomerID}/delete`)
                             button.btn.btn-danger(type='submit') Delete
+
 
     form(method='get' action='/customer/add')
         button.btn.btn-secondary(type='submit') Insert New Customer
