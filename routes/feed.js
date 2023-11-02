@@ -175,14 +175,12 @@ router.get('/customer/add', (req, res) => {
 router.post('/customer/add', (req, res) => {
     const { CustomerName, CustomerEmail } = req.body;
 
-    // Insert the new customer data into the database
     const query = 'INSERT INTO customer (CustomerName, CustomerEmail) VALUES (?, ?)';
 
     db.query(query, [CustomerName, CustomerEmail], (err, result) => {
         if (err) {
             throw err;
         }
-
         res.redirect('/customers');
     });
 });
