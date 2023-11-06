@@ -5,9 +5,9 @@ const mysql = require("mysql");
 const router = express.Router();
 const db = mysql.createConnection({
    host : '45.55.136.114',
-   user : 'F2023_olopez03',
-   database : 'F2023_olopez03',
-   password: "WildBoar23!"
+   user : 'F2023_kroye01',
+    database : 'F2023_kroye01',
+    password: "GoldenJackal2023!"
 });
 
 router.get('/customer/:id/update', (req, res) => {
@@ -130,11 +130,10 @@ router.get('/customers', (req, res) => {
 
 router.get('/products', (req, res) => {
     const query =
-        'SELECT i.ItemName, SUM(i.ItemPrice * s.Quantity) AS TotalSales \n' +
-        'FROM item i \n' +
-        'JOIN sales s ON i.ItemID = s.ItemID \n' +
-        'GROUP BY i.ItemName \n' +
-        'ORDER BY TotalSales DESC;';
+        'SELECT i.ItemName, COALESCE(SUM(i.ItemPrice * s.Quantity), 0) AS TotalSales ' +
+        'FROM item i LEFT JOIN sales s ON i.ItemID = s.ItemID ' +
+        'GROUP BY i.ItemName ' +
+        'ORDER BY TotalSales DESC';
 
     db.query(query, (err, rows) => {
         if (err) throw err;
@@ -143,6 +142,7 @@ router.get('/products', (req, res) => {
         });
     });
 });
+
 
 router.get('/sales', (req, res) => {
     const query =

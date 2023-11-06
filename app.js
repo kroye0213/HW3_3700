@@ -14,19 +14,6 @@ app.use( routes);
 
 const mysql = require('mysql');
 
-const db = mysql.createConnection({
-   host : '45.55.136.114',
-   user : 'F2023_olopez03',
-   database : 'F2023_olopez03',
-   password: "WildBoar23!"
-});
-
-db.connect((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log('Connected to the database');
-});
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
