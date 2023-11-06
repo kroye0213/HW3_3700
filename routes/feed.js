@@ -91,7 +91,8 @@ router.get('/home', (req, res) => {
         'GROUP BY \n' +
         '    YEAR(SalesDate), MONTH(SalesDate)\n' +
         'ORDER BY \n' +
-        '    SalesYear DESC, MONTH(SalesDate) DESC\n'+ 'LIMIT 5;';
+        '    TotalSales DESC, SalesYear DESC, MONTH(SalesDate) DESC\n' +
+        'LIMIT 5;\n';
 
 
     db.query(query1, (err1, results1) => {
