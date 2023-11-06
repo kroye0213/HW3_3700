@@ -41,7 +41,7 @@ router.post('/customer/:id/update', (req, res) => {
             throw err;
         }
 
-        res.redirect('/customers'); // Redirect to the customers page after successful update
+        res.redirect('/customers');
     });
 });
 
@@ -197,7 +197,7 @@ router.get('/customer/:id/delete', (req, res) => {
             throw err;
         }
 
-        res.redirect('/customers'); // Redirect to the customers page after successful deletion
+        res.redirect('/customers');
     });
 });
 router.get('/product/add', (req, res) => {
@@ -215,7 +215,7 @@ router.post('/product/add', (req, res) => {
             throw err;
         }
 
-        res.redirect('/products'); // Redirect to the products page after successful insertion
+        res.redirect('/products');
     });
 });
 

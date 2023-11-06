@@ -6,9 +6,9 @@ const routes = require("./routes/feed");
 
 const bodyParser = require("body-parser");
 const http = require("http");
-const path = require('path'); // Add this line to require 'path'
+const path = require('path');
 
-app.use( bodyParser.urlencoded({extended: false})); // middleware for body
+app.use( bodyParser.urlencoded({extended: false}));
 app.use( express.static( path.join(__dirname, 'public')));
 app.use( routes);
 

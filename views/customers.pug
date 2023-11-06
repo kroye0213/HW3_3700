@@ -10,7 +10,7 @@ include layouts/layout
                 th(scope='col') Total Sales
                 th(scope='col') Function
         tbody
-            //- Loop through the data and display customer details
+
             each customer in customers
                 tr
                     th(scope='row')= customer.CustomerName
